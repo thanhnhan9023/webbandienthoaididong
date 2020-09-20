@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/simple-sidebar.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="d-flex" id="wrapper">
+
+        <div class="bg-info border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading" style="color:white; font-weight:bold">ADMIN PAGE</div>
+                <div class="list-group list-group-flush" style="text-align:center">
+                    <a>@Html.ActionLink("Quản lý điện thoại", "Dienthoai", "Admin", new { @class = "linkColor" })</a>
+                </div>
+        </div>
+
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-info border-bottom">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link">@Html.ActionLink("Home", "Index", "Admin", new { @class = "linkColor" }) | </a>
+                            <a href="@Url.Action("LogOut","Admin")" style="color:red">Đăng xuất</a>
+                        </li>
+                    </ul>
+                </div>         
+            </nav>
+            @RenderBody()
+        </div>      
+    </div>
+
+</body>
+
+</html>
+
+<style>
+    a.linkColor {
+        color:red;
+    }
+</style>

@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<br />
+<h2 style="text-align:center; font-weight:bold">CHI TIẾT ĐIỆN THOẠI</h2><br />
+<table border="1" style="border-style:solid; margin-left:200px">
+    <tr style="text-align:center; font-weight:bold; background-color:blueviolet; color:yellow">
+        <td>Mã điện thoại</td>
+        <td>Tên điện thoại</td>
+        <td>Ảnh</td>       
+        <td>Số lượng</td>
+        <td>Mã nhà sản xuất</td>
+        <td>Giá bán</td>
+        <td></td>
+    </tr>
+    <tr style="text-align:center; font-weight:bold; background-color:lightskyblue; margin-left:60px" class="middleAlign">
+        <td style="border-left:1px solid black">@Model.MADT</td>
+        <td style="width:200px">@Model.TENDT</td>
+        <td style="height:auto; width:auto"><img src="~/Content/images/sanpham/@Model.HINHANH" width="200" /></td>
+        <td style="width:100px">@Model.SOLUONG</td>
+        <td>@Model.MANSX</td>
+        <td style="width:150px">@String.Format("{0:0,0}", @Model.GIA) VNĐ / chiếc</td>
+        <td style="border:solid 1px red; background-color:red; width:100px">
+            <a href="@Url.Action("themGioHang", "GioHang", new { @iMaDT = @Model.MADT, @strURL = Request.Url.ToString() })" style="color:white; width:100px">ĐẶT MUA</a></td>
+        </tr>
+</table>
+
+<style>
+    .middleAlign td {
+        vertical-align:middle;
+        border-right:1px solid black;
+        border-bottom:1px solid black;
+    }
+</style>

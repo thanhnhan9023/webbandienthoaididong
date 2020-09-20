@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    if(Session["TaiKhoanAd"] == null)
+    {
+        Response.Redirect("~/MainPage/Index");
+    }
+}
+<br />
+<h2 style="text-align:center">Chào mừng Administrator</h2>

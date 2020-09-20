@@ -1,0 +1,13 @@
+﻿@model IEnumerable<WebMuaBanDTDD.Models.NHASX>
+
+
+<h3 style="margin-left:70px; font-weight:bold; color:red; font-size:20px">THƯƠNG HIỆU</h3>
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("DTTheoNSX", "MainPage", new { @maNSX = item.MANSX })" style="border:1px solid gray; width:250px; text-align:center; color:green; 
+        background-color:yellow; font-weight:bold; height:50px; font-size: 25px; margin-left:20px">
+            @item.TENNHASX
+        </a>
+    }
+</div>

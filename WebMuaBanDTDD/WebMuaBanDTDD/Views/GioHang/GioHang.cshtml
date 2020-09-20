@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using WebMuaBanDTDD.Models;
+@model List<GioHang>
+
+<br />
+<h2 style="text-align:center; font-weight:bold">THÔNG TIN GIỎ HÀNG CỦA BẠN</h2><br />
+<table border="1" style="border-color:blue; margin-left:150px">
+    <tr style="text-align:center; font-weight:bold; background-color:blueviolet; color:yellow">
+        <td>Mã điện thoai</td>
+        <td>Tên điện thoại</td>
+        <td>Hình ảnh</td>
+        <td>Số lượng</td>
+        <td>Đơn giá</td>     
+        <td>Chi tiết</td>
+        <td>Thành tiền</td> 
+        <td style="width:50px"></td>
+        <td style="width:50px"></td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr style="text-align:center; font-weight:bold; background-color:aliceblue; margin-left:65px" class="middleAlign">
+            <td style="border-left:1px solid black">@item.iMaDT</td>
+            <td style="width:160px">@item.sTenDT</td>
+            <td><img src="~/Content/images/sanpham/@item.sHinhAnh" width="200" /></td>
+            @using (Html.BeginForm("capNhat", "GioHang", new { @iMaSP = item.iMaDT }))
+            {
+                <td>
+                    <input type="number" min="1" name="txtSL" value="@item.iSoLuong" style="background-color:yellow; width:100px" />
+                </td> 
+                <td style="width:150px">@String.Format("{0:0,0}", item.dDonGia) VNĐ</td>
+                <td><a href="@Url.Action("Details", "MainPage", new { id = item.iMaDT })">Chi tiết</a></td>
+                <td style="width:150px">@String.Format("{0:0,0}", item.dThanhTien) VNĐ</td>
+                <td>@Html.ActionLink("Xóa", "xoaGioHang", new{ @iMaSP = item.iMaDT })</td>
+                <td>
+                    <input type="submit" value="Cập Nhật" />
+                </td>
+            }
+        </tr> 
+    }
+    <tr style="font-weight:bold; text-align:right; color:red">
+        <td colspan="4">Số lượng hàng: @ViewBag.TongSl</td>
+        <td colspan="5" style="width:150px">Tổng tiền: @String.Format("{0:0,0}", ViewBag.TongTien) VNĐ</td>       
+    </tr>
+    <tr style="font-weight:bold; background-color:yellow; text-align:right">
+        <td colspan="9" style="height:100px; text-align:center; vertical-align:middle">
+            @Html.ActionLink("Xóa giỏ hàng", "xoaAll");
+        </td>
+    </tr>
+    <tr style="font-weight:bold; background-color:orange; text-align:center; font-size:20px">
+        <td colspan="9" style="height:100px; vertical-align:middle">
+            @Html.ActionLink("ĐẶT HÀNG", "DatHang");
+        </td>
+    </tr>
+</table>
+
+<style>
+    .middleAlign td {
+        vertical-align:middle;
+        border-right:1px solid black;
+        border-bottom:1px solid black;
+    }
+</style>

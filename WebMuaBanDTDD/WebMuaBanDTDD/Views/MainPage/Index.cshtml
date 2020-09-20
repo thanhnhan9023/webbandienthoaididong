@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using WebMuaBanDTDD.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<HANG>
+
+<br />
+<h2 style="text-align:center; font-weight:bold; font-size:20px">SẢN PHẨM CỦA CHÚNG TÔI</h2><br />
+<div class="row" style="margin-left:60px">
+@foreach (var dt in Model)
+{    
+    <div class="col-sm-4 col-lg-4 col-md-4" style="border:solid 2px lightblue; margin-right:5px; margin-bottom:5px; padding-top:10px ; max-width:450px; max-height:400px;  background-color:white">
+        <div class="thumbnail">
+            <a href="@Url.Action("Details", "MainPage", new { id = dt.MADT })">
+             <img alt="@dt.TENDT" src="~/Content/images/sanpham/@dt.HINHANH" width="300" class="center" />
+            </a>
+            
+            <div>
+                <br />
+                    <h4 style="text-align:center; font-weight:bold">
+                        @dt.TENDT
+                    </h4>
+                <br />
+                <br />
+                    <h4 style="text-align:center; font-weight:bold">
+                        @dt.GIA VNĐ / Cái
+                    </h4>
+                <br />
+                    <h4 style="text-align:center; border:1px solid; background-color:red; font-weight:bold; width:100px" class="container">
+                        <a href="@Url.Action("themGioHang", "GioHang", new { @iMaDT = dt.MADT, @strURL = Request.Url.ToString() })" style="color:white">ĐẶT MUA</a>
+                    </h4>
+                <br />
+            </div>
+        </div>
+    </div>
+     
+}
+    </div>
+
+<div style="margin-left:90px">Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) / @Model.PageCount</div>
+<div class="menuPage" style="margin-left:60px">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new {page = page}))
+</div>
+<style>
+    .menuPage li {
+        display:inline;
+        border: 1px solid black;
+        width:30px;
+        height:30px;
+        text-align:center;
+        background-color:white;
+    }
+</style>

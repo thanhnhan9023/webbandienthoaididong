@@ -1,0 +1,138 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <div class="wrap">
+	<div class="header">
+		<div class="headertop_desc">
+			<div class="call">
+				 <p><span>Liên hệ số điện thoại: </span><span class="number">0908172651</span></p>
+			</div>
+			<div class="account_desc">
+				<ul>
+					<li>@Html.ActionLink("Đăng nhập","DangNhap","Users")</li>
+					<li>@Html.ActionLink("Đăng ký","DangKy","Users")</li>
+                    <li>@Html.ActionLink("Admin","Login","Admin")</li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="header_top">
+			<div class="logo">
+				<a href='@Url.Action("Index","MainPage")'>
+                    <img src='@Url.Content("~/Content/images/logo/apple.jpg")' />
+				</a>
+			</div>
+			  <div>
+			  	   <p style="float:right">@Html.Action("GioHangPartial","GioHang")</p>
+			  </div>
+			  <script type="text/javascript">
+			      function DropDown(el) {
+			          this.dd = el;
+			          this.initEvents();
+			      }
+			      DropDown.prototype = {
+			          initEvents: function () {
+			              var obj = this;
+
+			              obj.dd.on('click', function (event) {
+			                  $(this).toggleClass('active');
+			                  event.stopPropagation();
+			              });
+			          }
+			      }
+
+			      $(function () {
+
+			          var dd = new DropDown($('#dd'));
+
+			          $(document).click(function () {
+			              // all dropdowns
+			              $('.wrapper-dropdown-2').removeClass('active');
+			          });
+
+			      });
+
+		</script>
+	 <div class="clear"></div>
+  </div>
+	<div class="header_bottom">
+	     	<div class="menu">
+	     		<ul>
+			    	<li>@Html.ActionLink("Trang chủ","Index","MainPage")</li>
+			    	<li><a href="#">Giới thiệu</a></li>
+			    	<li><a href="#">Tin tức</a></li>
+     			</ul>
+	     	</div>
+	     	<div class="search_box">
+	     		<form>
+	     			<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
+	     		</form>
+	     	</div>
+	     	<div class="clear"></div>
+	     </div>	     
+   </div>
+</div>
+    <div style="background-color:#dcf1cc">
+        <div style="position:absolute; left: 10px; top:240px">@Html.Action("NhaSX","MainPage")</div>
+        @Html.Action("SlideShow","MainPage")
+        <div>@RenderBody()</div>
+    </div>
+   <div class="footer">
+   	  <div class="wrap">	
+	     <div class="section group">
+				<div class="col_1_of_3 span_1_of_3">
+						<h4>Thông tin</h4>
+						<ul>
+						<li><a href="#">Về chúng tôi</a></li>
+						<li><a href="#">Chăm sóc khách hàng</a></li>
+						<li><a href="#">Tìm kiếm nâng cao</a></li>
+						<li><a href="#">Liên hệ chúng tôi</a></li>
+						</ul>
+					</div>
+				<div class="col_1_of_3 span_1_of_3">
+					<h4>Lý do để mua?</h4>
+						<ul>
+						<li><a href="#">Về chúng tôi</a></li>
+						<li><a href="#">Chăm sóc khách hàng</a></li>
+						<li><a href="#">Chính sách quyền riêng tư</a></li>
+						<li><a href="#">Site Map</a></li>
+						<li><a href="#">Từ khóa tìm kiếm</a></li>
+						</ul>
+				</div>
+				<div class="col_1_of_3 span_1_of_3">
+					<h4>Liên hệ</h4>
+						<ul>
+							<li><span>0901468145</span></li>
+							<li><span>0901468146</span></li>
+						</ul>
+						<div class="social-icons">
+							<h4>Follow Us</h4>
+					   		  <ul>
+							      <li><a href="#" target="_blank"><img src="~/Content/images/logo/facebook.jpg" alt="" /></a></li>
+							      <li><a href="#" target="_blank"><img src="~/Content/images/logo/twitter.jpg" alt="" /></a></li>
+							      <li><a href="#" target="_blank"><img src="~/Content/images/logo/skype.jpg" alt="" /> </a></li>
+						     </ul>
+   	 					</div>
+				</div>
+			</div>			
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,89 @@
+﻿@using WebMuaBanDTDD.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<HANG>
+
+@{
+    ViewBag.Title = "Dienthoai";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    if (Session["TaiKhoanAd"] == null)
+    {
+        Response.Redirect("~/MainPage/Index");
+    }
+}
+<br />
+<h2 style="text-align:center">Quản lý điện thoại</h2>
+
+<p style="margin-left:30px">
+    @Html.ActionLink("Thêm điện thoại", "themDienThoai")
+</p>
+<table style="margin-left:30px; text-align:center" class="quanLyDT">
+    <tr>
+        <th>Tên ĐT</th>
+        <th>Ảnh</th>
+        <th>Số lượng</th>
+        <th>Nhà SX</th>
+        <th>Ngày áp đặt giá</th>
+        <th>Đơn giá</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TENDT)
+        </td>
+        <td>
+            <img src="@Url.Content("~/Content/images/sanpham/"+ item.HINHANH)" width="200" />
+        </td>
+        <td style="width:100px">
+            @Html.DisplayFor(modelItem => item.SOLUONG)
+        </td>
+        <td style="width:120px">
+            @Html.DisplayFor(modelItem => item.NHASX.TENNHASX)
+        </td>
+        <td style="width:200px">
+            @Html.DisplayFor(modelItem => item.NGAYAD)
+        </td>
+        <td style="width:210px">
+            @Html.DisplayFor(modelItem => item.GIA) VNĐ / chiếc
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "suaDT", new { id=item.MADT }) |
+            @Html.ActionLink("Chi tiết", "chiTietDT", new { id=item.MADT }) |
+            @Html.ActionLink("Xóa", "xoaDT", new { id=item.MADT })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div style="margin-left:60px">Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) / @Model.PageCount</div>
+<div class="menuPage" style="margin-left:30px">
+    @Html.PagedListPager(Model, page => Url.Action("Dienthoai", new {page = page}))
+</div>
+
+<style>
+    .quanLyDT {
+        border-left:2px solid black;
+    }
+    .quanLyDT th {
+        border:2px solid black;
+        border-left:none;
+        background-color:yellow;
+        color:orange;
+    }
+    .quanLyDT td {
+        border:2px solid black; 
+        border-left:none;
+        border-top:none;
+        background-color:lightskyblue;
+    }
+    .menuPage li {
+        display:inline;
+        border: 1px solid black;
+        width:30px;
+        height:30px;
+        text-align:center;
+        background-color:white;
+    }
+</style>

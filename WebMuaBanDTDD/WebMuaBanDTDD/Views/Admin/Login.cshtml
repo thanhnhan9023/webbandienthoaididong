@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+
+    <link rel="stylesheet" href="~/Content/css/login_registered.css" />
+</head>
+<body>
+    <div class="login-page">
+    <p style="text-align:center; color:yellow">ĐĂNG NHẬP QUYỀN ADMIN</p>
+  <div class="form">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+    <form class="login-form">
+      <input type="text" placeholder="username" name="TenDN"/>
+        @ViewData["Error1"]
+      <input type="password" placeholder="password" name="Password"/>
+        @ViewData["Error2"]
+      <button type="submit" style="color:white; font-weight:bold">Đăng nhập</button>
+    </form> 
+        <h3 style="color: red; font-weight:bold">@ViewBag.ThongBao</h3>
+    }
+      <p style="text-align:center">@Html.ActionLink("Quay về trang chủ","Index","MainPage")</p>
+  </div>
+</div>
+</body>
+</html>
+

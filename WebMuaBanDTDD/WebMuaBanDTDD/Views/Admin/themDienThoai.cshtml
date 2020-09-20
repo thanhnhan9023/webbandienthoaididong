@@ -1,0 +1,84 @@
+﻿@model WebMuaBanDTDD.Models.HANG
+
+@{
+    ViewBag.Title = "themDienThoai";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    if (Session["TaiKhoanAd"] == null)
+    {
+        Response.Redirect("~/MainPage/Index");
+    }
+}
+<br />
+<h2 style="text-align:center">THÊM ĐIỆN THOẠI</h2>
+<br />
+@using (Html.BeginForm("themDienThoai", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <table class="center">
+    <tr style="border-top:1px solid black">
+        <td style="font-weight:bold; background-color:yellow; color:orange">Tên điện thoại</td>
+        <td style="margin-left:10px">
+            @Html.EditorFor(model => model.TENDT)
+            @Html.ValidationMessageFor(model => model.TENDT)
+        </td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold; background-color:yellow; color:orange">Ảnh</td>
+        <td><input type="file" name="fileUp" /></td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold; background-color:yellow; color:orange">Số lượng</td>
+        <td>
+            @Html.EditorFor(model => model.SOLUONG)
+            @Html.ValidationMessageFor(model => model.SOLUONG)
+        </td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold; background-color:yellow; color:orange">Nhà sản xuất</td>
+        <td>@Html.DropDownList("MANSX")</td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold; background-color:yellow; color:orange">Ngày áp dụng</td>
+        <td>
+            <input type="date" name="NGAYAD" />
+            @Html.ValidationMessageFor(model => model.NGAYAD)
+        </td>
+    </tr>
+    <tr>
+        <td style="font-weight:bold; background-color:yellow; color:orange">Đơn giá</td>
+        <td>
+            @Html.EditorFor(model => model.GIA)
+            @Html.ValidationMessageFor(model => model.GIA)
+        </td>
+    </tr>
+</table>
+    <br />
+    <p style="text-align:center">
+        <input type="submit" value="THÊM ĐT" /> |
+        @Html.ActionLink("Về trang quản lý điện thoại", "Dienthoai", "Admin")
+    </p>  
+}
+
+<style>
+    table.center {
+        margin-left:auto;
+        margin-right:auto;
+        text-align:center;
+    }
+    .center tr {
+        border:1px solid black;
+        border-right:none;
+        border-top:none;
+    }
+    .center td {
+        border-right:1px solid black;
+        width:200px;
+        background-color:lightblue;
+    }
+</style>
+
+
+
+
+

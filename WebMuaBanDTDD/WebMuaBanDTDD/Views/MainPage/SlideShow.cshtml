@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="~/Content/css/slider.css" rel="stylesheet" type="text/css" media="all"/>
+        <title>@ViewBag.Title</title>
+    </head>
+    <body>
+        <div class="slideshow-container">
+        <div class="mySlides fade">
+          <img src="~/Content/images/slide/img1.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="~/Content/images/slide/img2.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="~/Content/images/slide/img3.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides fade">
+          <img src="~/Content/images/slide/img4.jpg" style="width:100%">
+        </div>
+
+      </div>
+      <br>
+
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(0)"></span> 
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>    
+        <span class="dot" onclick="currentSlide(3)"></span>    
+      </div>  
+    </body>
+    <script>
+
+        var slideIndex;
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+
+            slides[slideIndex].style.display = "block";
+            dots[slideIndex].className += " active";
+            slideIndex++;
+
+            if (slideIndex > slides.length - 1) {
+                slideIndex = 0
+            }
+
+            setTimeout(showSlides, 3000);
+        }
+        
+        showSlides(slideIndex = 0);
+
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+    </script>
+</html>

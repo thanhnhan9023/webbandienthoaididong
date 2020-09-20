@@ -1,0 +1,37 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DangKy</title>
+
+    <link rel="stylesheet" href="~/Content/css/login_registered.css" />
+</head>
+<body>
+    <div class="login-page">
+    <p style="text-align:center; color:yellow">ĐĂNG KÝ TÀI KHOẢN</p>
+  <div class="form">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+            <form class="register-form">       
+                <input type="text" placeholder="name" name="Hoten"/>
+                <input type="text" placeholder="account" name="TenDN" />
+                <input type="password" placeholder="password" name="Password" />
+                <input type="password" placeholder="retype password" name="Retype" />
+                <input type="text" placeholder="address" name="Diachi" />
+                <input type="text" placeholder="phone number" name="Dienthoai" />
+            <button>Create</button>
+            <p class="message">Đã có tài khoản? @Html.ActionLink("Đăng nhập tại đây","DangNhap","Users")</p>
+        </form>
+    }     
+      <p style="text-align:center">@Html.ActionLink("Quay về trang chủ","Index","MainPage")</p>
+  </div>
+        
+</div>
+</body>
+</html>
